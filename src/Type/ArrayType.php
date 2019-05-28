@@ -209,7 +209,14 @@ class ArrayType implements StaticResolvableType
 			$offsetType = new IntegerType();
 		}
 
-		return new ArrayType(
+		if ($valueType instanceof ArrayType) {
+			return new self(
+				TypeCombinator::union($this->keyType, self::castToArrayKeyType($offsetType)),
+				$valueType
+			);
+		}
+
+		return new self(
 			TypeCombinator::union($this->keyType, self::castToArrayKeyType($offsetType)),
 			TypeCombinator::union($this->itemType, $valueType)
 		);

@@ -329,6 +329,33 @@ class Foo
 	{
 		echo $xml['asdf'];
 	}
+	
+    public function arrayWithMultipleKeysAfterForeaches()
+	{
+		$iterator = [11, 12];
+		foreach ($iterator as $i) {
+			$array = [];
+
+			$array[$i]['bar'] = 1;
+			$array[$i]['baz'] = 2;
+
+			echo $array[$i]['bar'];
+			echo $array[$i]['baz'];
+		}
+
+		$iterator = [11, 12];
+		foreach ($iterator as $i) {
+			$array = [];
+
+			$array[$i]['bar'] = 1;
+			if ((bool) rand(0, 1)) {
+				$array[$i]['baz'] = 2;
+			}
+
+			echo $array[$i]['bar'];
+			echo $array[$i]['baz'];
+		}
+	}
 }
 
 class SubClassSimpleXMLElement extends \SimpleXMLElement
