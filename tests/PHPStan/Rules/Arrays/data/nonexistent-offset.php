@@ -329,8 +329,8 @@ class Foo
 	{
 		echo $xml['asdf'];
 	}
-	
-    public function arrayWithMultipleKeysAfterForeaches(int $i, int $j)
+
+	public function arrayWithMultipleKeysAfterForeaches(int $i, int $j)
 	{
 		// Must fail
 		$array = [];
