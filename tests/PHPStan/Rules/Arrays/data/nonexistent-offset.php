@@ -330,27 +330,43 @@ class Foo
 		echo $xml['asdf'];
 	}
 	
-    public function arrayWithMultipleKeysAfterForeaches(int $i)
+    public function arrayWithMultipleKeysAfterForeaches(int $i, int $j)
 	{
-	    // Must work
-        $array = [];
+		// Must fail
+		$array = [];
 
-        $array[$i]['bar'] = 1;
-        $array[$i]['baz'] = 2;
+		$array[$i]['bar'] = 1;
+		if ((bool) rand(0, 1)) {
+		  $array[$i]['baz'] = 2;
+		}
 
-        echo $array[$i]['bar'];
-        echo $array[$i]['baz'];
+		echo $array[$i]['bar'];
+		echo $array[$i]['baz'];
 
-        // Must fail
-        $array = [];
+		// Must work
+		$array = [];
 
-        $array[$i]['bar'] = 1;
-        if ((bool) rand(0, 1)) {
-            $array[$i]['baz'] = 2;
-        }
+		$array['bar'] = 1;
+		$array['baz'] = 2;
 
-        echo $array[$i]['bar'];
-        echo $array[$i]['baz'];
+		echo $array['bar'];
+		echo $array['baz'];
+
+		$array = [];
+
+		$array[$i]['bar'] = 1;
+		$array[$i]['baz'] = 2;
+
+		echo $array[$i]['bar'];
+		echo $array[$i]['baz'];
+
+		$array = [];
+
+		$array[$i][$j]['bar'] = 1;
+		$array[$i][$j]['baz'] = 2;
+
+		echo $array[$i][$j]['bar'];
+		echo $array[$i][$j]['baz'];
 	}
 }
 
