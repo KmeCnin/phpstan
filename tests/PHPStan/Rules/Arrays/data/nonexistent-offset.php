@@ -330,31 +330,27 @@ class Foo
 		echo $xml['asdf'];
 	}
 	
-    public function arrayWithMultipleKeysAfterForeaches()
+    public function arrayWithMultipleKeysAfterForeaches(int $i)
 	{
-		$iterator = [11, 12];
-		foreach ($iterator as $i) {
-			$array = [];
+	    // Must work
+        $array = [];
 
-			$array[$i]['bar'] = 1;
-			$array[$i]['baz'] = 2;
+        $array[$i]['bar'] = 1;
+        $array[$i]['baz'] = 2;
 
-			echo $array[$i]['bar'];
-			echo $array[$i]['baz'];
-		}
+        echo $array[$i]['bar'];
+        echo $array[$i]['baz'];
 
-		$iterator = [11, 12];
-		foreach ($iterator as $i) {
-			$array = [];
+        // Must fail
+        $array = [];
 
-			$array[$i]['bar'] = 1;
-			if ((bool) rand(0, 1)) {
-				$array[$i]['baz'] = 2;
-			}
+        $array[$i]['bar'] = 1;
+        if ((bool) rand(0, 1)) {
+            $array[$i]['baz'] = 2;
+        }
 
-			echo $array[$i]['bar'];
-			echo $array[$i]['baz'];
-		}
+        echo $array[$i]['bar'];
+        echo $array[$i]['baz'];
 	}
 }
 
